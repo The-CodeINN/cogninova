@@ -1,5 +1,5 @@
 const DashBoardPage = () => {
-  return (<div>
+  return (<div className="">
     <p>Dashboard (Protected)</p>
     </div>);
 }
