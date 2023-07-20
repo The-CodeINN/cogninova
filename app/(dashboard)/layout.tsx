@@ -11,6 +11,9 @@ const DashBoardLayout = ({ children }: { children: React.ReactNode }) => {
         <NavBar />
         {children}
       </main>
+      {/* <div className="min-h-screen pt-24 pb-6 w-full px">
+        <div className='bg-green-900 z-20 top-0'>hhh</div>
+      </div> */}
     </div>
   );
 };
