@@ -1,7 +1,7 @@
-import { Button } from "@/components/ui/button";
-
 const DashBoardPage = () => {
-  return <div>Dashboard (Protected)</div>;
+  return (<div>
+    <p>Dashboard (Protected)</p>
+    </div>);
 }
 
 export default DashBoardPage;
