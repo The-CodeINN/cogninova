@@ -1,7 +1,20 @@
-import Heading from '@/components/Heading';
+"use client"
+import * as z from "zod";
+import {zodResolver} from "@hookform/resolvers/zod"
 import { MessageSquare } from 'lucide-react';
+import { useForm } from 'react-hook-form';
+import { formSchema } from "./constants";
+
+import Heading from '@/components/Heading';
 
 const Conversation = () => {
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      prompt: ""
+    } 
+  })
+
   return (
     <div>
       <Heading
@@ -11,6 +24,10 @@ const Conversation = () => {
         iconColor='text-violet-500'
         bgColor='bg-violet-500/10'
       />
+
+      <div className='px-4 lg:px-8'>
+
+      </div>
     </div>
   );
 };
