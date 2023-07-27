@@ -1,5 +1,4 @@
 "use client";
-
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { MessageSquare } from "lucide-react";
@@ -9,7 +8,6 @@ import { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { ChatCompletionRequestMessage } from "openai";
-
 import Heading from "@/components/Heading";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
@@ -59,6 +57,7 @@ const Conversation = () => {
         icon={MessageSquare}
         iconColor='text-violet-500'
         bgColor='bg-violet-500/10'
+        textColor="text-violet-500"
       />
 
       <div className='px-4 lg:px-8'>
@@ -87,7 +86,7 @@ const Conversation = () => {
               <Button
                 type='submit'
                 disabled={isLoading}
-                className='col-span-12 lg:col-span-2 w-full'
+                className='col-span-12 lg:col-span-2 w-full bg-violet-500 hover:bg-violet-700'
               >
                 Generate
               </Button>

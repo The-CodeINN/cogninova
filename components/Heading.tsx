@@ -7,6 +7,7 @@ interface HeadingProps {
   icon: LucideIcon
   iconColor: string;
   bgColor: string;
+  textColor: string;
 }
 
 const Heading = ({
@@ -14,7 +15,8 @@ const Heading = ({
   description,
   icon: Icon,
   iconColor,
-  bgColor
+  bgColor,
+  textColor
 }: HeadingProps) => {
   return (
       <div className="px-4 lg:px-8 flex item-center gap-x-3 mb-8">
@@ -22,7 +24,7 @@ const Heading = ({
           <Icon className={cn("w-10 h-10", iconColor)} />
         </div>
       <div>
-          <h2 className="text-3xl font-bold">{title}</h2>
+          <h2 className={cn(`xs:text-3xl sm:text-4xl font-bold`,textColor )}>{title}</h2>
           <p className="text-sm text-muted-foreground">{description}</p>
       </div>
       </div>
