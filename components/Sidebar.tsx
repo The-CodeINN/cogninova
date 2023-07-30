@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import {
-  Code,
+  Code2,
   ImageIcon,
   LayoutDashboard,
   MessageSquare,
@@ -50,7 +50,7 @@ const routes = [
   },
   {
     label: "Code Generation",
-    icon: Code,
+    icon: Code2,
     href: "/code",
     color: "text-green-700",
   },

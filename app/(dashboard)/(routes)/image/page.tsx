@@ -1,14 +1,14 @@
 "use client";
+
+import { useState } from "react";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Code2 } from "lucide-react";
+import { Image } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { formSchema } from "./constants";
-import { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { ChatCompletionRequestMessage } from "openai";
-import ReactMarkdown from "react-markdown";
 
 import { cn } from "@/lib/utils";
 import Heading from "@/components/Heading";
@@ -20,14 +20,17 @@ import Loader from "@/components/Loader";
 import { UserAvartar } from "@/components/UserAvartar";
 import { BotAvatar } from "@/components/BotAvatar";
 
-const Code = () => {
-  const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([]);
+const ImageGeneration = () => {
   const router = useRouter();
+
+  const [images, setImages] = useState<string[]>([])
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       prompt: "",
+      amount: "1",
+      resolution: "256x256",
     },
   });
 
@@ -35,17 +38,11 @@ const Code = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      const userMessage: ChatCompletionRequestMessage = {
-        role: "user",
-        content: values.prompt,
-      };
-      const newMessages = [...messages, userMessage];
+      setImages([]);
 
-      const response = await axios.post("/api/code", {
-        messages: newMessages,
-      });
-
-      setMessages((current) => [...current, userMessage, response.data]);
+      
+      
+      const response = await axios.post("/api/image", values);
 
       form.reset();
     } catch (error: any) {
@@ -59,12 +56,12 @@ const Code = () => {
   return (
     <div>
       <Heading
-        title='Code Generation'
-        description='Your AI coding assitant'
-        icon={Code2}
-        iconColor='text-green-500'
-        bgColor='bg-green-500/10'
-        textColor='text-green-500'
+        title='Image Generation'
+        description='Turn your prompt into an image'
+        icon={Image}
+        iconColor='text-pink-500'
+        bgColor='bg-pink-500/10'
+        textColor='text-pink-500'
       />
 
       <div className='px-4 lg:px-8'>
@@ -82,7 +79,7 @@ const Code = () => {
                       <Input
                         className='border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent'
                         disabled={isLoading}
-                        placeholder='Simple HTTP request using ExpressJS'
+                        placeholder='Image of a cow with four heads'
                         {...field}
                       />
                     </FormControl>
@@ -93,7 +90,7 @@ const Code = () => {
               <Button
                 type='submit'
                 disabled={isLoading}
-                className='col-span-12 lg:col-span-2 w-full bg-green-500 hover:bg-green-700'
+                className='col-span-12 lg:col-span-2 w-full bg-pink-500 hover:bg-pink-700'
               >
                 Generate
               </Button>
@@ -103,39 +100,15 @@ const Code = () => {
 
         <div className='space-y-4 mt-4'>
           {isLoading && (
-            <div className='p-8 rounded-lg w-full flex items-center justify-center bg-muted'>
+            <div className='p-20'>
               <Loader />
             </div>
           )}
-          {messages.length === 0 && !isLoading && (
-            <Empty label='No conversation started!' />
+          {images.length === 0 && !isLoading && (
+            <Empty label='No Image Generated!' />
           )}
-          <div className='flex flex-col-reverse gap-y-4'>
-            {messages.map((message) => (
-              <div
-                key={message.content}
-                className={cn(
-                  `p-8 w-full flex items-start gap-x-8 rounded-lg`,
-                  message.role === "user"
-                    ? "bg-white border border-black/10 "
-                    : "bg-muted"
-                )}
-              >
-                {message.role === "user" ? <UserAvartar /> : <BotAvatar />}
-                <ReactMarkdown components={{
-                  pre: ({ node, ...props }) => (
-                    <div className="overflow-auto w-full my-2 bg-black/10 p-2 rounded-lg">
-                      <pre {...props} />
-                    </div>
-                  ),
-                  code: ({ node, ...props }) => (
-                    <code className="bg-black/10 rounded-lg p-1" {...props} />
-                  )
-                }} className="text-sm overflow-hidden leading-7">
-                  {message.content || ""}
-                </ReactMarkdown>
-              </div>
-            ))}
+          <div>
+            Image are loading...
           </div>
         </div>
       </div>
@@ -143,4 +116,4 @@ const Code = () => {
   );
 };
 
-export default Code;
+export default ImageGeneration;
