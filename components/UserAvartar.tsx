@@ -8,7 +8,7 @@ export const UserAvartar = () => {
     <Avatar className='h-8 w-8'>
       <AvatarImage
         src={user?.profileImageUrl}
-        alt={user?.firstName}
+        alt="User Avatar"
         className='rounded-full'
       />
       <AvatarFallback>
