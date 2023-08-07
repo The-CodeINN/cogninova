@@ -1,7 +1,7 @@
 "use client";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { MessageSquare } from "lucide-react";
+import { Music } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { formSchema } from "./constants";
 import { useState } from "react";
@@ -58,12 +58,12 @@ const Conversation = () => {
   return (
     <div>
       <Heading
-        title='Conversation'
-        description='Our most advanced conversation model'
-        icon={MessageSquare}
-        iconColor='text-violet-500'
-        bgColor='bg-violet-500/10'
-        textColor='text-violet-500'
+        title='Music Generation'
+        description='Turn your prompts into music!'
+        icon={Music}
+        iconColor='text-emerald-500'
+        bgColor='bg-emerald-500/10'
+        textColor='text-emerald-500'
       />
 
       <div className='px-4 lg:px-8'>
@@ -81,7 +81,7 @@ const Conversation = () => {
                       <Input
                         className='border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent'
                         disabled={isLoading}
-                        placeholder='How do I calculate the radius of a circle?'
+                        placeholder='Piano solo'
                         {...field}
                       />
                     </FormControl>
@@ -92,7 +92,7 @@ const Conversation = () => {
               <Button
                 type='submit'
                 disabled={isLoading}
-                className='col-span-12 lg:col-span-2 w-full bg-violet-500 hover:bg-violet-700'
+                className='col-span-12 lg:col-span-2 w-full bg-emerald-500 hover:bg-emerald-700'
               >
                 Generate
               </Button>
