@@ -100,8 +100,9 @@ const VideoPage = () => {
 
           {video && (
             <video
-              className='w-full aspect-video mt-8 rounded-lg border border-black'
+              className='w-full aspect-video mt-8 rounded-lg'
               controls
+              autoPlay
             >
               <source src={video} type='video/mp4' />
             </video>
