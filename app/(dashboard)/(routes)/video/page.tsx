@@ -82,7 +82,7 @@ const VideoPage = () => {
               <Button
                 type='submit'
                 disabled={isLoading}
-                className='col-span-12 lg:col-span-2 w-full bg-orange-500 hover:bg-emerald-700'
+                className='col-span-12 lg:col-span-2 w-full bg-orange-500 hover:bg-orange-700'
               >
                 Generate
               </Button>
