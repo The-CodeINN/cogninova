@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "./ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 
 const testimonials = [
@@ -74,10 +75,13 @@ const LandingContent = () => {
             className='bg-[#192339] border-none text-white'
           >
             <CardHeader>
-              <CardTitle className='flex items-center gap-x-2'>
+              <CardTitle className='flex items-center justify-between gap-x-2'>
                 <div>
                   <p className='text-lg'>{item.name}</p>
                   <p className='text-zinc-400 text-sm'>{item.title}</p>
+                </div>
+                <div className="">
+                  <Button className="rounded-full w-10 h-10 text-xl cursor-default">{ item.avatar}</Button>
                 </div>
               </CardTitle>
               <CardContent className='pt-4 px-0 line-clamp-4'>
